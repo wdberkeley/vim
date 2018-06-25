@@ -119,3 +119,6 @@ nnoremap <leader>ji :YcmCompleter GoToImprecise<CR>
 " Whitelist Kudu directories so the config is read automatically.
 let g:ycm_extra_conf_globlist = ['~/src/kudu/*']
 
+" Make YCM not slow by delaying autocomplete until there's some input.
+let g:ycm_min_num_of_chars_for_completion = 1
+
