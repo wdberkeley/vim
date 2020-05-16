@@ -2,7 +2,7 @@
 
 set nocompatible " Don't be vi-compatible.
 
-set encoding=utf-8 " Default to UTF-8.
+set encoding=utf-8
 
 " Plugins.
 " I'd like to use vim's native plugin management, but it doesn't seem very
@@ -28,15 +28,12 @@ Plug 'w0rp/ale'
 " Official Rust support for vim.
 Plug 'rust-lang/rust.vim'
 
-" YouCompleteMe, a semantic completion engine.
-Plug 'Valloric/YouCompleteMe'
-
 call plug#end()
 
 colorscheme badwolf " See the colors directory for schemes.
                     " Switch with :colo <scheme>.
 
-syntax on " Turn on syntax highlighting.
+syntax on
 
 " The setting below stores all swapfiles in a single place so they don't
 " pollute the directory of the file being edited.
@@ -59,17 +56,17 @@ set listchars=tab:▸\ ,eol:¬ " Set symbols for invisible characters.
 filetype indent plugin on  " Load language indent files (from .vim/indent/).
 
 " Location and command information.
-set title          " Show file info in the title bar.
-set number         " Show line numbers.
-                   " Remember :set rnu for relative numbers.
-set ruler          " Show cursor position.
-set showcmd        " Show command as it is being typed.
-set laststatus=2   " Always show the status line at the bottom.
-set cursorline     " Highlight current line.
-set colorcolumn=80 " Highlight the 100th column.
-set visualbell     " On error, blink cursor instead of beeping.
-set showmatch      " Show matching delimiter briefly.
-set scrolloff=3    " Show at least three lines above and below the cursor.
+set title           " Show file info in the title bar.
+set number          " Show line numbers.
+                    " Remember :set rnu for relative numbers.
+set ruler           " Show cursor position.
+set showcmd         " Show command as it is being typed.
+set laststatus=2    " Always show the status line at the bottom.
+set cursorline      " Highlight current line.
+set colorcolumn=100 " Highlight the 100th column.
+set visualbell      " On error, blink cursor instead of beeping.
+set showmatch       " Show matching delimiter briefly.
+set scrolloff=3     " Show at least three lines above and below the cursor.
 
 " Buffers, tabs, windows.
 set hidden " Permits hiding buffers with unsaved changes.
@@ -106,19 +103,4 @@ let g:ackprg = 'rg --vimgrep'
 " Repo at https://github.com/w0rp/ale.
 let g:ale_fixers = { 'rust' : ['rustfmt'], }
 let g:ale_fix_on_save = 1
-
-" These C++ options are Kudu-specific.
-" Maybe one day I'll need to handle multiple C++ projects.
-let g:ale_c_build_dir_names = 'build/latest'
-let g:ale_cpp_clangtidy_executable = '~/src/kudu/thirdparty/installed/uninstrumented/bin/clang-tidy'
-
-" YouCompleteMe
-" Repo at https://github.com/Valloric/YouCompleteMe.
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-nnoremap <leader>ji :YcmCompleter GoToImprecise<CR>
-" Whitelist Kudu directories so the config is read automatically.
-let g:ycm_extra_conf_globlist = ['~/src/kudu/*']
-
-" Make YCM not slow by delaying autocomplete until there's some input.
-let g:ycm_min_num_of_chars_for_completion = 1
 
